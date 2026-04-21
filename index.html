@@ -59,6 +59,40 @@
     <canvas id="canvas"></canvas>
   </div>
 
+  <!-- ═══ CIRCULAR TEXT ═══ -->
+  <div class="orbit-wrap" id="orbit-wrap">
+    <svg class="orbit-svg" id="orbit-svg" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <path id="orbit-path"
+          d="M 300,300
+             m -210,0
+             a 210,210 0 1,1 420,0
+             a 210,210 0 1,1 -420,0" />
+        <path id="orbit-path-inner"
+          d="M 300,300
+             m -170,0
+             a 170,170 0 1,1 340,0
+             a 170,170 0 1,1 -340,0" />
+      </defs>
+      <!-- Outer rotating ring text -->
+      <text class="orbit-text orbit-text--outer">
+        <textPath href="#orbit-path" startOffset="0%">
+          · GOLD BULLET LIP COLOUR · INFUSED WITH VITAMIN E · LONG-LASTING FORMULA · VEGAN CERTIFIED · 18K INSPIRED CASING ·
+        </textPath>
+      </text>
+      <!-- Inner counter-rotating accent text -->
+      <text class="orbit-text orbit-text--inner">
+        <textPath href="#orbit-path-inner" startOffset="50%">
+          · WINKY LUX · SCULPTED LUXURY · PURE PIGMENT · CRUELTY FREE · DERMATOLOGIST TESTED ·
+        </textPath>
+      </text>
+      <!-- Centre crosshair -->
+      <circle class="orbit-ring" cx="300" cy="300" r="8" />
+      <line class="orbit-cross" x1="286" y1="300" x2="314" y2="300"/>
+      <line class="orbit-cross" x1="300" y1="286" x2="300" y2="314"/>
+    </svg>
+  </div>
+
   <!-- ═══ DARK OVERLAY ═══ -->
   <div id="dark-overlay"></div>
 

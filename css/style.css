@@ -285,6 +285,77 @@ body {
 }
 
 /* ═══════════════════════════════════════
+   CIRCULAR ORBIT TEXT
+   ═══════════════════════════════════════ */
+.orbit-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  will-change: opacity;
+  transition: none;
+}
+
+.orbit-svg {
+  width: min(52vmin, 480px);
+  height: min(52vmin, 480px);
+  overflow: visible;
+}
+
+.orbit-text {
+  font-family: var(--font-b);
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  fill: var(--gold);
+  opacity: 0.75;
+}
+
+.orbit-text--outer {
+  animation: orbitRotate 32s linear infinite;
+  transform-origin: 300px 300px;
+  transform-box: fill-box;
+}
+
+.orbit-text--inner {
+  animation: orbitRotateReverse 48s linear infinite;
+  transform-origin: 300px 300px;
+  transform-box: fill-box;
+  fill: var(--gold-dark);
+  opacity: 0.45;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+}
+
+.orbit-ring {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 0.5;
+  opacity: 0.5;
+}
+
+.orbit-cross {
+  stroke: var(--gold);
+  stroke-width: 0.5;
+  opacity: 0.5;
+}
+
+@keyframes orbitRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes orbitRotateReverse {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
+/* ═══════════════════════════════════════
    CANVAS
    ═══════════════════════════════════════ */
 .canvas-wrap {

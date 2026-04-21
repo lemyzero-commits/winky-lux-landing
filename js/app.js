@@ -33,6 +33,7 @@
   const darkOverlay  = document.getElementById('dark-overlay');
   const marqWrap     = document.getElementById('marquee');
   const header       = document.getElementById('site-header');
+  const orbitWrap    = document.getElementById('orbit-wrap');
 
   // ─── STATE ─────────────────────────────────────────
   const frames    = new Array(FRAME_COUNT).fill(null);
@@ -386,6 +387,19 @@
         else if (p > MARQUEE_LEAVE - mOut && p <= MARQUEE_LEAVE)
           mOpa = 1 - (p - (MARQUEE_LEAVE - mOut)) / mOut;
         marqWrap.style.opacity = mOpa;
+
+        // ── Orbit text fade — visible during product animation, hides before dark overlay
+        const ORBIT_ENTER = 0.07;
+        const ORBIT_LEAVE = 0.50;
+        const ORBIT_FADE  = 0.05;
+        let orbitOpa = 0;
+        if      (p >= ORBIT_ENTER && p < ORBIT_ENTER + ORBIT_FADE)
+          orbitOpa = (p - ORBIT_ENTER) / ORBIT_FADE;
+        else if (p >= ORBIT_ENTER + ORBIT_FADE && p <= ORBIT_LEAVE - ORBIT_FADE)
+          orbitOpa = 1;
+        else if (p > ORBIT_LEAVE - ORBIT_FADE && p <= ORBIT_LEAVE)
+          orbitOpa = 1 - (p - (ORBIT_LEAVE - ORBIT_FADE)) / ORBIT_FADE;
+        orbitWrap.style.opacity = orbitOpa;
 
         // ── Header text colour
         const isHeaderDark = p > HEADER_DARK_ENTER && p < HEADER_DARK_LEAVE;
