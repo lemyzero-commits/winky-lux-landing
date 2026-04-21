@@ -5,20 +5,19 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
 
-/* === VARIABLES — DARK MODE === */
+/* === VARIABLES === */
 :root {
-  --bg:         #000000;
-  --bg-soft:    #0a0908;
+  --bg:         #f6f4f1;
   --white:      #ffffff;
   --gold:       #c9a460;
-  --gold-light: #e8c97a;
-  --gold-pale:  rgba(201, 164, 96, 0.10);
-  --gold-dark:  #b8912e;
-  --charcoal:   #f0ede8;
-  --dark:       #000000;
-  --text:       #f0ede8;
-  --muted:      rgba(240, 237, 232, 0.45);
-  --mauve:      #c9a0b8;
+  --gold-light: #dfc07a;
+  --gold-pale:  rgba(201, 164, 96, 0.12);
+  --gold-dark:  #9a7330;
+  --charcoal:   #1a1816;
+  --dark:       #111009;
+  --text:       #1a1816;
+  --muted:      #7a726c;
+  --mauve:      #7b5b6e;
   --font-d:     'Cormorant Garamond', Georgia, serif;
   --font-b:     'Jost', 'Helvetica Neue', sans-serif;
 }
