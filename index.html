@@ -59,38 +59,45 @@
     <canvas id="canvas"></canvas>
   </div>
 
-  <!-- ═══ CIRCULAR TEXT ═══ -->
-  <div class="orbit-wrap" id="orbit-wrap">
-    <svg class="orbit-svg" id="orbit-svg" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <path id="orbit-path"
-          d="M 300,300
-             m -210,0
-             a 210,210 0 1,1 420,0
-             a 210,210 0 1,1 -420,0" />
-        <path id="orbit-path-inner"
-          d="M 300,300
-             m -170,0
-             a 170,170 0 1,1 340,0
-             a 170,170 0 1,1 -340,0" />
-      </defs>
-      <!-- Outer rotating ring text -->
-      <text class="orbit-text orbit-text--outer">
-        <textPath href="#orbit-path" startOffset="0%">
-          · GOLD BULLET LIP COLOUR · INFUSED WITH VITAMIN E · LONG-LASTING FORMULA · VEGAN CERTIFIED · 18K INSPIRED CASING ·
-        </textPath>
-      </text>
-      <!-- Inner counter-rotating accent text -->
-      <text class="orbit-text orbit-text--inner">
-        <textPath href="#orbit-path-inner" startOffset="50%">
-          · WINKY LUX · SCULPTED LUXURY · PURE PIGMENT · CRUELTY FREE · DERMATOLOGIST TESTED ·
-        </textPath>
-      </text>
-      <!-- Centre crosshair -->
-      <circle class="orbit-ring" cx="300" cy="300" r="8" />
-      <line class="orbit-cross" x1="286" y1="300" x2="314" y2="300"/>
-      <line class="orbit-cross" x1="300" y1="286" x2="300" y2="314"/>
-    </svg>
+  <!-- ═══ FEATURE PANELS ═══ -->
+  <div class="fp fp--left" id="fp-1" data-fp-enter="0.09" data-fp-leave="0.21" data-fp-side="left">
+    <div class="fp-inner">
+      <span class="fp-num">01</span>
+      <div class="fp-body">
+        <h3 class="fp-title">Precision<br>Formula</h3>
+        <p class="fp-desc">Weightless pigment that glides on in a single stroke, delivering 8 hours of flawless, fade-proof colour from morning to midnight.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="fp fp--right" id="fp-2" data-fp-enter="0.21" data-fp-leave="0.33" data-fp-side="right">
+    <div class="fp-inner">
+      <span class="fp-num">02</span>
+      <div class="fp-body">
+        <h3 class="fp-title">18K Inspired<br>Casing</h3>
+        <p class="fp-desc">Sculpted in signature gold metallics, the bullet casing is as luxurious as the colour it holds — a jewel designed to be seen.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="fp fp--left" id="fp-3" data-fp-enter="0.33" data-fp-leave="0.45" data-fp-side="left">
+    <div class="fp-inner">
+      <span class="fp-num">03</span>
+      <div class="fp-body">
+        <h3 class="fp-title">Vitamin E<br>Enriched</h3>
+        <p class="fp-desc">Infused with nourishing Vitamin E for lasting hydration that keeps lips soft, supple, and perfectly conditioned all day.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="fp fp--right" id="fp-4" data-fp-enter="0.45" data-fp-leave="0.53" data-fp-side="right">
+    <div class="fp-inner">
+      <span class="fp-num">04</span>
+      <div class="fp-body">
+        <h3 class="fp-title">Vegan &amp;<br>Cruelty Free</h3>
+        <p class="fp-desc">100% vegan certified and never tested on animals. Beauty with a conscience, crafted to the highest ethical standard.</p>
+      </div>
+    </div>
   </div>
 
   <!-- ═══ DARK OVERLAY ═══ -->

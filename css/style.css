@@ -285,74 +285,87 @@ body {
 }
 
 /* ═══════════════════════════════════════
-   CIRCULAR ORBIT TEXT
+   FEATURE PANELS (numbered, alternating)
    ═══════════════════════════════════════ */
-.orbit-wrap {
+.fp {
   position: fixed;
-  inset: 0;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 18;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   pointer-events: none;
   opacity: 0;
-  will-change: opacity;
-  transition: none;
+  will-change: opacity, transform;
+  max-width: 38vw;
 }
 
-.orbit-svg {
-  width: min(52vmin, 480px);
-  height: min(52vmin, 480px);
-  overflow: visible;
+.fp--left  { left: 3vw;  }
+.fp--right { right: 3vw; }
+
+.fp-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
-.orbit-text {
+/* Giant ghost number */
+.fp-num {
+  font-family: var(--font-d);
+  font-size: clamp(7rem, 16vw, 14rem);
+  font-weight: 300;
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+  color: var(--gold);
+  opacity: 0.13;
+  display: block;
+  /* Slightly overlap the text below */
+  margin-bottom: -0.22em;
+  user-select: none;
+}
+
+.fp-body {
+  padding-left: 0.15em;
+}
+
+.fp-title {
+  font-family: var(--font-d);
+  font-size: clamp(2rem, 3.8vw, 4rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--charcoal);
+  margin-bottom: 1rem;
+}
+
+/* Right-side panels use italic gold for the title */
+.fp--right .fp-title {
+  font-style: italic;
+  color: var(--gold-dark);
+}
+
+.fp-desc {
   font-family: var(--font-b);
-  font-size: 10.5px;
-  font-weight: 400;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  fill: var(--gold);
-  opacity: 0.75;
+  font-size: clamp(0.72rem, 1vw, 0.85rem);
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--muted);
+  max-width: 30ch;
 }
 
-.orbit-text--outer {
-  animation: orbitRotate 32s linear infinite;
-  transform-origin: 300px 300px;
-  transform-box: fill-box;
+/* Thin gold rule above each panel */
+.fp-body::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 0.9rem;
 }
 
-.orbit-text--inner {
-  animation: orbitRotateReverse 48s linear infinite;
-  transform-origin: 300px 300px;
-  transform-box: fill-box;
-  fill: var(--gold-dark);
-  opacity: 0.45;
-  font-size: 9px;
-  letter-spacing: 0.2em;
-}
-
-.orbit-ring {
-  fill: none;
-  stroke: var(--gold);
-  stroke-width: 0.5;
-  opacity: 0.5;
-}
-
-.orbit-cross {
-  stroke: var(--gold);
-  stroke-width: 0.5;
-  opacity: 0.5;
-}
-
-@keyframes orbitRotate {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-@keyframes orbitRotateReverse {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(-360deg); }
+@media (max-width: 900px) {
+  .fp { max-width: 44vw; }
+  .fp-num { font-size: clamp(5rem, 14vw, 9rem); }
+  .fp-title { font-size: clamp(1.4rem, 4vw, 2.5rem); }
+  .fp-desc { display: none; }
 }
 
 /* ═══════════════════════════════════════

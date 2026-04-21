@@ -33,7 +33,15 @@
   const darkOverlay  = document.getElementById('dark-overlay');
   const marqWrap     = document.getElementById('marquee');
   const header       = document.getElementById('site-header');
-  const orbitWrap    = document.getElementById('orbit-wrap');
+
+  // Feature panels — collected from DOM
+  const featurePanels = Array.from(document.querySelectorAll('.fp')).map(el => ({
+    el,
+    enter:   parseFloat(el.dataset.fpEnter),
+    leave:   parseFloat(el.dataset.fpLeave),
+    side:    el.dataset.fpSide,   // 'left' | 'right'
+    state:   'hidden',            // 'hidden' | 'in' | 'out'
+  }));
 
   // ─── STATE ─────────────────────────────────────────
   const frames    = new Array(FRAME_COUNT).fill(null);
@@ -388,18 +396,34 @@
           mOpa = 1 - (p - (MARQUEE_LEAVE - mOut)) / mOut;
         marqWrap.style.opacity = mOpa;
 
-        // ── Orbit text fade — visible during product animation, hides before dark overlay
-        const ORBIT_ENTER = 0.07;
-        const ORBIT_LEAVE = 0.50;
-        const ORBIT_FADE  = 0.05;
-        let orbitOpa = 0;
-        if      (p >= ORBIT_ENTER && p < ORBIT_ENTER + ORBIT_FADE)
-          orbitOpa = (p - ORBIT_ENTER) / ORBIT_FADE;
-        else if (p >= ORBIT_ENTER + ORBIT_FADE && p <= ORBIT_LEAVE - ORBIT_FADE)
-          orbitOpa = 1;
-        else if (p > ORBIT_LEAVE - ORBIT_FADE && p <= ORBIT_LEAVE)
-          orbitOpa = 1 - (p - (ORBIT_LEAVE - ORBIT_FADE)) / ORBIT_FADE;
-        orbitWrap.style.opacity = orbitOpa;
+        // ── Feature panels — sequential, alternating left/right
+        featurePanels.forEach(fp => {
+          const inRange = p >= fp.enter && p < fp.leave;
+
+          if (inRange && fp.state !== 'in') {
+            // Slide + fade in from the appropriate side
+            const xFrom = fp.side === 'left' ? -50 : 50;
+            gsap.killTweensOf(fp.el);
+            gsap.fromTo(fp.el,
+              { opacity: 0, x: xFrom, y: '-50%' },
+              { opacity: 1, x: 0,     y: '-50%',
+                duration: 0.65, ease: 'power3.out' }
+            );
+            fp.state = 'in';
+          } else if (!inRange && fp.state === 'in') {
+            // Fade out (clean vanish — no slide)
+            gsap.killTweensOf(fp.el);
+            gsap.to(fp.el, {
+              opacity: 0, y: '-50%',
+              duration: 0.35, ease: 'power2.in',
+              onComplete: () => { fp.state = 'hidden'; }
+            });
+            fp.state = 'out';
+          } else if (!inRange && fp.state === 'hidden') {
+            // Keep invisible, reset position for re-entry
+            gsap.set(fp.el, { opacity: 0, x: 0, y: '-50%' });
+          }
+        });
 
         // ── Header text colour
         const isHeaderDark = p > HEADER_DARK_ENTER && p < HEADER_DARK_LEAVE;
