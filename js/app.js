@@ -10,7 +10,7 @@
   const FRAME_COUNT        = 97;
   const FRAME_SPEED        = 2.0;  // product animation completes at ~50% scroll
   const IMAGE_SCALE        = 0.87; // padded cover (avoids header clip)
-  const BG_DEFAULT         = '#f6f4f1';
+  const BG_DEFAULT         = '#000000';
 
   // Scroll progress thresholds
   const OVERLAY_ENTER      = 0.54;
